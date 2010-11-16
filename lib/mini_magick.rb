@@ -263,7 +263,7 @@ module MiniMagick
     end
     
     def command(output_to)
-      CommandBuilder.new(command, *args).command
+      CommandBuilder.new("identify", output_to).command
     end
 
     # Gives you raw image data back
