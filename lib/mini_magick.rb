@@ -261,6 +261,10 @@ module MiniMagick
         output_to
       end
     end
+    
+    def command(output_to)
+      CommandBuilder.new(command, *args).command
+    end
 
     # Gives you raw image data back
     # @return [String] binary string
@@ -331,7 +335,7 @@ module MiniMagick
 
     def run(command_builder)
       command = command_builder.command
-
+      
       sub = Subexec.run(command, :timeout => MiniMagick.timeout)
 
       if sub.exitstatus != 0
