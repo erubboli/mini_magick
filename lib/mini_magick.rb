@@ -262,10 +262,6 @@ module MiniMagick
       end
     end
     
-    def command(output_to)
-      CommandBuilder.new("identify", output_to).command
-    end
-
     # Gives you raw image data back
     # @return [String] binary string
     def to_blob
@@ -294,8 +290,8 @@ module MiniMagick
     #   end
     #
     # @yieldparam command [CommandBuilder]
-    def combine_options(&block)
-      c = CommandBuilder.new('mogrify')
+    def combine_options( cmd = 'mogrify', &block)
+      c = CommandBuilder.new(cmd)
       block.call(c)
       c << @path
       run(c)
@@ -335,6 +331,7 @@ module MiniMagick
 
     def run(command_builder)
       command = command_builder.command
+      puts "MiniMagick::command => #{command}"
       
       sub = Subexec.run(command, :timeout => MiniMagick.timeout)
 
