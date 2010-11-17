@@ -87,11 +87,8 @@ module MiniMagick
 
       def convert(filename, &block)
         begin
-          c = CommandBuilder.new('convert')
-          block.call(c)
-          c << filename
-          run(c)
-          self
+          image = self.new(filename)
+          image.combine_options 'convert', &block
         end
       end
       
