@@ -87,7 +87,7 @@ module MiniMagick
 
       def convert(filename, &block)
         begin
-          c = CommandBuilder.new(cmd)
+          c = CommandBuilder.new('convert')
           block.call(c)
           c << filename
           run(c)
