@@ -85,6 +85,16 @@ module MiniMagick
         end
       end
 
+      def convert(filename, &block)
+        begin
+          c = CommandBuilder.new(cmd)
+          block.call(c)
+          c << filename
+          run(c)
+          self
+        end
+      end
+      
       # @deprecated Please use MiniMagick::Image.open(file_or_url) now
       def from_file(file, ext = nil)
         warn "Warning: MiniMagick::Image.from_file is now deprecated. Please use Image.open"
