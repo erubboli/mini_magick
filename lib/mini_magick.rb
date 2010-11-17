@@ -89,6 +89,7 @@ module MiniMagick
         begin
           image = self.new(filename)
           image.combine_options 'convert', &block
+          image
         end
       end
       
