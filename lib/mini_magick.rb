@@ -339,7 +339,7 @@ module MiniMagick
 
     def run(command_builder)
       command = command_builder.command
-      #puts "MiniMagick::command => #{command}"
+      puts "MiniMagick::command => #{command}"
       
       sub = Subexec.run(command, :timeout => MiniMagick.timeout)
 
